@@ -61,7 +61,7 @@ public class JobRequestHelper {
     private static final Logger logger = LoggerFactory.getLogger( JobRequestHelper.class );
 
     public static final String GUVNOR_BASE_URL = "/";
-    
+
     @Inject
     private RepositoryService repositoryService;
 
@@ -177,13 +177,13 @@ public class JobRequestHelper {
 
         org.uberfire.java.nio.file.Path repositoryPath = getRepositoryRootPath( repositoryName );
 
-        if( projectGroupId == null || projectGroupId.trim().isEmpty() ) { 
+        if( projectGroupId == null || projectGroupId.trim().isEmpty() ) {
             projectGroupId = projectName;
         }
-        if( projectVersion == null || projectVersion.trim().isEmpty() ) { 
+        if( projectVersion == null || projectVersion.trim().isEmpty() ) {
             projectVersion = "1.0";
         }
-        
+
         if ( repositoryPath == null ) {
             result.setStatus( JobStatus.RESOURCE_NOT_EXIST );
             result.setResult( "Repository [" + repositoryName + "] does not exist" );
@@ -236,7 +236,7 @@ public class JobRequestHelper {
         } else {
             String repoPathStr = repositoryPath.toUri().toString();
             StringBuilder projectPomUriStrBdr = new StringBuilder(repoPathStr);
-            if( ! repoPathStr.endsWith("/") ) { 
+            if( ! repoPathStr.endsWith("/") ) {
                 projectPomUriStrBdr.append("/");
             }
             projectPomUriStrBdr.append(projectName).append("/pom.xml");
@@ -254,8 +254,8 @@ public class JobRequestHelper {
             result.setStatus( JobStatus.SUCCESS );
             return result;
         }
-    }        
-    
+    }
+
     public JobResult compileProject( final String jobId,
                                      final String repositoryName,
                                      final String projectName ) {
@@ -414,7 +414,7 @@ public class JobRequestHelper {
             BuildResults buildResults = buildService.buildAndDeploy( project );
 
             result.setDetailedResult( buildResults == null ? null : deployResultToDetailedStringMessages( buildResults ) );
-            result.setStatus( buildResults != null && buildResults.getErrorMessages().isEmpty() ? JobStatus.SUCCESS : JobStatus.FAIL );
+            result.setStatus(buildResults != null && buildResults.getErrorMessages().isEmpty() ? JobStatus.SUCCESS : JobStatus.FAIL);
             return result;
         }
     }
@@ -455,6 +455,7 @@ public class JobRequestHelper {
             result.setResult( "OrganizationalUnit name and owner must be provided" );
             return result;
         }
+
 
         OrganizationalUnit organizationalUnit = null;
         List<org.guvnor.structure.repositories.Repository> repositories = new ArrayList<org.guvnor.structure.repositories.Repository>();
